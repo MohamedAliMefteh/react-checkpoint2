@@ -1,38 +1,133 @@
-.App {
+.players-grid {
+  padding: 2rem;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.page-title {
+  font-size: 2.5rem;
+  color: #2d3436;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.players-container {
+  position: relative;
   display: flex;
-  flex-direction: column;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.card-wrapper {
+  transition: all 0.5s ease;
+}
+.players-container:hover .card-wrapper {
+  filter: blur(1px) grayscale(50%);
+  transform: scale(0.95);
+  opacity: 0.7;
+}
+
+.players-container .card-wrapper:hover {
+  filter: blur(0) grayscale(0);
+  transform: translateY(-10px) scale(1.02);
+  opacity: 1;
+  z-index: 1;
+}
+
+.player-card {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  transform-origin: center;
+  width: 320px;
+  margin: 1rem;
+  position: relative;
+  cursor: pointer;
+  
+}
+
+.player-card:hover {
+  
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.15);
+}
+
+.player-image {
+  height: 250px;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.player-card:hover .player-image {
+  transform: scale(1.1);
+}
+
+.player-info {
+  padding: 1.5rem;
+}
+
+.player-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+  color: #2d3436;
+}
+
+.player-detail {
+  display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+  color: #636e72;
 }
 
-.App-link {
-  color: #61dafb;
+.detail-label {
+  font-weight: 600;
+  width: 120px;
+  color: #2d3436;
 }
 
-@keyframes App-logo-spin {
+.team-name {
+  color: #0984e3;
+  font-weight: 600;
+}
+
+.jersey-number {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(128, 172, 253, 0.151);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #2d3436;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Animation for cards appearing */
+@keyframes cardAppear {
   from {
-    transform: rotate(0deg);
+      opacity: 0;
+      transform: translateY(20px);
   }
   to {
-    transform: rotate(360deg);
+      opacity: 1;
+      transform: translateY(0);
   }
 }
+
+
+
+
+/* Stagger the animation for each card */
+.player-card:nth-child(1) { animation-delay: 0.1s; }
+.player-card:nth-child(2) { animation-delay: 0.2s; }
+.player-card:nth-child(3) { animation-delay: 0.3s; }
+.player-card:nth-child(4) { animation-delay: 0.4s; }
